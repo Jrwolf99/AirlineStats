@@ -9,26 +9,27 @@ const StyledBar = styled.div`
   align-items: center;
   margin: 3rem;
   gap: 10px;
+`;
 
-  & > * {
-    height: 50px;
-    padding: 2em;
-    background-color: white;
-    border-radius: 3px;
-    text-align: center;
+const StyledWhiteBox = styled.div`
+  height: 50px;
+  padding: 2em;
+  background-color: white;
+  border-radius: 3px;
+  text-align: center;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const StyledAirports = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  gap: 10px;
+
+  gap: 20px;
 `;
 
 const StyledAirport = styled.div`
@@ -42,6 +43,8 @@ const StyledAirport = styled.div`
     font-size: 0.7rem;
   }
 `;
+
+const StyledDistance = styled.div``;
 
 export default function MyDescBar({
   airports,
@@ -67,32 +70,36 @@ export default function MyDescBar({
 
   return (
     <StyledBar>
-      <div>
+      <StyledWhiteBox>
         <StyledAirports>
-          {airports.map((airport) => {
-            return (
-              <StyledAirport>
-                <h1>{airport.iata_code}</h1>
-                <p>{airport.municipality}</p>
-              </StyledAirport>
-            );
-          })}
+          {airports.length > 0
+            ? airports.map((airport) => {
+                return (
+                  <StyledAirport>
+                    <h1>{airport.iata_code}</h1>
+                    <p>{airport.municipality}</p>
+                  </StyledAirport>
+                );
+              })
+            : "Click a blue button!"}
         </StyledAirports>
-
-        <div>
+      </StyledWhiteBox>
+      <StyledWhiteBox>
+        <StyledDistance>
           <strong>Distance</strong>
-          <p>{Math.floor(distance)}</p>
-        </div>
-      </div>
+          <p>{Math.floor(distance)} miles</p>
+        </StyledDistance>
+      </StyledWhiteBox>
 
-      <button
+      <StyledWhiteBox
         onClick={() => {
           setDistance(0);
           setAirports([]);
         }}
+        style={{ cursor: "pointer" }}
       >
         Clear
-      </button>
+      </StyledWhiteBox>
     </StyledBar>
   );
 }
