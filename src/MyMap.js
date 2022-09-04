@@ -45,17 +45,17 @@ export default function MyMap() {
         myX = myX * scale + shiftX;
         myY = myY * scale + shiftY;
 
-        if (airport.iso_region == "US-HI")
+        if (airport.iso_region === "US-HI")
           return <Dot x={276} y={60} key={airport.id} />;
         if (
-          airport.iso_region == "US-AK" &&
-          airport.municipality == "Anchorage"
+          airport.iso_region === "US-AK" &&
+          airport.municipality === "Anchorage"
         )
           return <Dot x={120} y={62} key={airport.id} />;
 
         if (
-          airport.iso_region == "US-AK" &&
-          airport.municipality == "Fairbanks"
+          airport.iso_region === "US-AK" &&
+          airport.municipality === "Fairbanks"
         )
           return <Dot x={130} y={90} key={airport.id} />;
 

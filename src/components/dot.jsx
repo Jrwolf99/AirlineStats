@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 const StyledDot = styled.div`
 
-height: 8px;
-width: 8px;
-background-color: transparent;
+height: 6px;
+width: 6px;
+background-color: #0059ff;
 border-radius: 50%;
 border: 2px solid #0059ff;
 position: absolute;
