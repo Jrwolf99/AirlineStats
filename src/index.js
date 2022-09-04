@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./globalstyles/globalreset.css";
+import "./globalstyles/fonts.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
