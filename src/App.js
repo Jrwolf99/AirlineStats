@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import MyMap from "./MyMap";
-import MyDescBar from "./MyDescBar";
-import MyDatePicker from "./MyDatePicker";
+import MyMap from "./components/MyMap/MyMap";
+import MyDescBar from "./components/MyDescBar/MyDescBar";
+import MyDatePicker from "./components/MyDatePicker/MyDatePicker";
+import MyGraphModal from "./components/MyGraphModal/MyGraphModal";
 
 const StyledApp = styled.div`
   background-color: #2e2e2e;
@@ -20,7 +21,14 @@ const StyledHeaderSection = styled.div`
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 50vw;
+  gap: 48vw;
+
+  & > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
 `;
 const StyledMapSection = styled.div`
   display: flex;
@@ -46,7 +54,10 @@ function App() {
           <StyledTitle>Airplane Stats</StyledTitle>
           <StyledSubTitle>An interactive airplane map</StyledSubTitle>
         </div>
-        <MyDatePicker date={date} setDate={setDate} />
+        <span>
+          <MyGraphModal />
+          <MyDatePicker date={date} setDate={setDate} />
+        </span>
       </StyledHeaderSection>
       <section>
         <StyledTimeSection>

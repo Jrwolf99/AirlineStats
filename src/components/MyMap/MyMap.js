@@ -2,11 +2,11 @@ import React from "react";
 import USAMap from "react-usa-map";
 import styled from "styled-components";
 
-import Dot from "./components/dot";
+import Dot from "../../components/dot";
 
-import myAirports from "./data/USAirports.json";
+import myAirports from "../../data/USAirports.json";
 
-import useProjection from "./hooks/useProjection";
+import useProjection from "../../hooks/useProjection";
 
 const StyledMap = styled.div`
   position: relative;

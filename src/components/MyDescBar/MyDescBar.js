@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import useDistance from "./hooks/useDistance";
+import useDistance from "../../hooks/useDistance";
 
 import { IoIosAirplane } from "react-icons/io";
 
-import planes from "./data/planes.json";
-import useFuelCost from "./hooks/useFuelCost";
-import useCalculate from "./hooks/useCalculate";
+import planes from "../../data/planes.json";
+import useFuelCost from "../../hooks/useFuelCost";
+import useCalculate from "../../hooks/useCalculate";
 
 const StyledBar = styled.div`
   display: flex;
