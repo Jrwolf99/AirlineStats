@@ -1,9 +1,11 @@
+import { useCallback, useEffect } from "react";
+
 const useDistance = () => {
   function toRadians(point) {
     return [point[0] * (Math.PI / 180), point[1] * (Math.PI / 180)];
   }
 
-  const findDistanceMiles = (point1, point2) => {
+  const findDistanceMiles = useCallback((point1, point2) => {
     const point1Rad = toRadians(point1);
     const point2Rad = toRadians(point2);
 
@@ -25,9 +27,22 @@ const useDistance = () => {
     result = result * R;
 
     return result;
+  });
+
+  const findTotalDistance = (airports) => {
+    let totalDistance = 0;
+    for (let i = 0; i < airports.length; i++) {
+      if (airports[i - 1]) {
+        totalDistance += findDistanceMiles(
+          [airports[i].longitude_deg, airports[i].latitude_deg],
+          [airports[i - 1].longitude_deg, airports[i - 1].latitude_deg]
+        );
+      }
+    }
+    return totalDistance;
   };
 
-  return { findDistanceMiles };
+  return { findTotalDistance };
 };
 
 export default useDistance;

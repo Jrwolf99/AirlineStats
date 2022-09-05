@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import MyMap from "./MyMap";
 import MyDescBar from "./MyDescBar";
-import useFuelCost from "./hooks/useFuelCost";
 
 const StyledApp = styled.div`
   background-color: #2e2e2e;
@@ -14,7 +13,6 @@ const StyledApp = styled.div`
     align-items: start;
   }
 `;
-
 const StyledHeaderSection = styled.div`
   padding: 1em 0 0 1em;
   color: white;
@@ -22,15 +20,12 @@ const StyledHeaderSection = styled.div`
   flex-direction: column;
   justify-content: left;
 `;
-
 const StyledMapSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-
 const StyledTimeSection = styled.div``;
-
 const StyledTitle = styled.h1``;
 const StyledSubTitle = styled.h2`
   font-size: 1rem;
@@ -39,14 +34,6 @@ const StyledSubTitle = styled.h2`
 function App() {
   const [airports, setAirports] = useState([]);
   const [distance, setDistance] = useState();
-
-  const { getFuelCost } = useFuelCost();
-
-  useEffect(() => {
-    console.log(airports);
-
-    console.log(getFuelCost());
-  }, [airports, getFuelCost]);
 
   return (
     <StyledApp>

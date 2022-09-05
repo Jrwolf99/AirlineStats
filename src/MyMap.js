@@ -12,19 +12,12 @@ const StyledMap = styled.div`
   position: relative;
   width: 1000px;
   margin: 0;
-
-  /* path {
-    pointer-events: all;
-  }
-  path:hover {
-    opacity: 0.5;
-    cursor: pointer;
-  } */
 `;
 
 //latitude and longitude of the US starts at 125
 export default function MyMap({ airports, setAirports }) {
   const { albersCalculateXY } = useProjection();
+
   const scale = 1250;
   const shiftX = 494;
   const shiftY = 291;

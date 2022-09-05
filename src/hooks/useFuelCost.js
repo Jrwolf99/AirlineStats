@@ -3,9 +3,8 @@ import myFuel from "../data/fuel.json";
 const useFuelCost = () => {
   const getFuelCost = (month, year) => {
     let resultCost;
-
     myFuel.data.forEach((monthRow) => {
-      if (monthRow.Year === "2000" && monthRow.Month === "July")
+      if (monthRow.Year === year && monthRow.Month === month)
         resultCost = monthRow.Price;
     });
     return resultCost;

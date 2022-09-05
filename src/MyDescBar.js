@@ -4,15 +4,19 @@ import useDistance from "./hooks/useDistance";
 
 import { IoIosAirplane } from "react-icons/io";
 
+import planes from "./data/planes.json";
+import useFuelCost from "./hooks/useFuelCost";
+import useCalculate from "./hooks/useCalculate";
+
 const StyledBar = styled.div`
   display: flex;
   justify-content: start;
   align-items: start;
-  margin: 3rem;
-  gap: 50px;
+  margin: 1.2rem;
+  gap: 20px;
 `;
 
-const StyledTrack = styled.div`
+const StyledTrackOne = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,8 +24,20 @@ const StyledTrack = styled.div`
   gap: 30px;
 `;
 
+const StyledTrackTwo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  & > * {
+    width: 200px;
+  }
+`;
+
 const StyledWhiteBox = styled.div`
-  padding: 1em;
+  padding: 0.5em;
   background-color: white;
   border-radius: 3px;
   text-align: center;
@@ -36,16 +52,12 @@ const StyledAirports = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
+  width: 100px;
   gap: 20px;
 `;
 
 const StyledAirport = styled.div`
-  padding: 1em;
-
-  & > h1 {
-    font-size: 1rem;
-  }
+  padding: 0.3em;
 
   & > p {
     font-size: 0.7rem;
@@ -59,6 +71,16 @@ const StyledAirport = styled.div`
 `;
 
 const StyledDistance = styled.div``;
+const StyledCosts = styled.div`
+  & > p {
+    font-size: 0.8rem;
+  }
+`;
+
+const StyledBlueLetters = styled.span`
+  color: #0059ff;
+  font-weight: 500;
+`;
 
 export default function MyDescBar({
   airports,
@@ -66,25 +88,17 @@ export default function MyDescBar({
   distance,
   setDistance,
 }) {
-  const { findDistanceMiles } = useDistance();
+  const { findTotalDistance } = useDistance();
+  const { getFuelCost } = useFuelCost();
+  const { calculateTotalFlightTime, calculateTotalFuelCosts } = useCalculate();
 
   useEffect(() => {
-    let totalDistance = 0;
-    for (let i = 0; i < airports.length; i++) {
-      if (airports[i - 1]) {
-        totalDistance += findDistanceMiles(
-          [airports[i].longitude_deg, airports[i].latitude_deg],
-          [airports[i - 1].longitude_deg, airports[i - 1].latitude_deg]
-        );
-      }
-    }
-
-    setDistance(totalDistance);
-  }, [airports, findDistanceMiles, setDistance]);
+    setDistance(findTotalDistance(airports));
+  }, [setDistance, findTotalDistance, airports]);
 
   return (
     <StyledBar>
-      <StyledTrack>
+      <StyledTrackOne>
         <StyledWhiteBox
           onClick={() => {
             setDistance(0);
@@ -99,7 +113,7 @@ export default function MyDescBar({
             {airports.length > 0
               ? airports.map((airport) => {
                   return (
-                    <StyledAirport>
+                    <StyledAirport key={airport.id}>
                       <div>
                         <IoIosAirplane />
                         <h1> {airport.iata_code}</h1>
@@ -111,14 +125,112 @@ export default function MyDescBar({
               : "Click a blue button!"}
           </StyledAirports>
         </StyledWhiteBox>
-      </StyledTrack>
+      </StyledTrackOne>
 
-      <StyledWhiteBox>
-        <StyledDistance>
-          <strong>Total Distance</strong>
-          <p>{Math.floor(distance)} miles</p>
-        </StyledDistance>
-      </StyledWhiteBox>
+      <StyledTrackTwo>
+        <StyledWhiteBox>
+          <StyledCosts>
+            <strong>Total Cost of Jet Fuel</strong>
+            <p style={{ fontSize: "1.5rem" }}>
+              <StyledBlueLetters>
+                $
+                {calculateTotalFuelCosts(distance, getFuelCost("July", "2012"))}
+              </StyledBlueLetters>{" "}
+            </p>
+          </StyledCosts>
+        </StyledWhiteBox>
+
+        <StyledWhiteBox>
+          <StyledCosts>
+            <strong>July 2022 Cost</strong>
+            <p>
+              <StyledBlueLetters>
+                ${getFuelCost("July", "2012")}
+              </StyledBlueLetters>{" "}
+              Per Gallon
+            </p>
+          </StyledCosts>
+        </StyledWhiteBox>
+
+        <StyledWhiteBox>
+          <StyledDistance>
+            <strong>Total Distance</strong>
+            <p>{Math.floor(distance).toLocaleString()} miles</p>
+          </StyledDistance>
+        </StyledWhiteBox>
+
+        <StyledWhiteBox>
+          <StyledCosts>
+            <strong>Flight Speeds</strong>
+            <p>
+              takeoff:{" "}
+              <StyledBlueLetters>
+                {planes.Boeing737800.takeoff.speed}
+              </StyledBlueLetters>{" "}
+              MPH
+            </p>
+            <p>
+              cruising:{" "}
+              <StyledBlueLetters>
+                {planes.Boeing737800.cruising.speed}
+              </StyledBlueLetters>{" "}
+              MPH
+            </p>
+            <p>
+              landing:{" "}
+              <StyledBlueLetters>
+                {planes.Boeing737800.landing.speed}
+              </StyledBlueLetters>{" "}
+              MPH
+            </p>
+          </StyledCosts>
+        </StyledWhiteBox>
+
+        <StyledWhiteBox>
+          <StyledDistance>
+            <strong>Total Flight Time</strong>
+            <p>
+              <StyledBlueLetters>
+                {calculateTotalFlightTime(
+                  distance,
+                  planes.Boeing737800.takeoff.speed,
+                  planes.Boeing737800.cruising.speed,
+                  planes.Boeing737800.landing.speed
+                ) + " "}
+              </StyledBlueLetters>
+            </p>
+          </StyledDistance>
+        </StyledWhiteBox>
+
+        <StyledWhiteBox>
+          <StyledCosts>
+            <strong>Jet Fuel Used</strong>
+            <p>
+              takeoff:{" "}
+              <StyledBlueLetters>
+                {planes.Boeing737800.takeoff.fuelConsumption.toLocaleString()}
+              </StyledBlueLetters>{" "}
+              Gallons/Hr
+            </p>
+
+            <p>
+              cruising:{" "}
+              <StyledBlueLetters>
+                {planes.Boeing737800.cruising.fuelConsumption}
+              </StyledBlueLetters>{" "}
+              Gallons/Hr
+            </p>
+
+            <p>
+              landing:{" "}
+              <StyledBlueLetters>
+                {planes.Boeing737800.landing.fuelConsumption}
+              </StyledBlueLetters>{" "}
+              Gallons/Hr
+            </p>
+          </StyledCosts>
+        </StyledWhiteBox>
+      </StyledTrackTwo>
     </StyledBar>
   );
 }

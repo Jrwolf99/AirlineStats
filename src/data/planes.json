@@ -1,0 +1,18 @@
+{
+  "Boeing737800": {
+    "takeoff": {
+      "fuelConsumption": 1553,
+      "speed": 150
+    },
+
+    "cruising": {
+      "fuelConsumption": 850,
+      "speed": 543
+    },
+
+    "landing": {
+      "fuelConsumption": 200,
+      "speed": 150
+    }
+  }
+}
