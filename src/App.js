@@ -38,8 +38,8 @@ function App() {
   return (
     <StyledApp>
       <StyledHeaderSection>
-        <StyledTitle>Airline Stats</StyledTitle>
-        <StyledSubTitle>An interactive airport map</StyledSubTitle>
+        <StyledTitle>Airplane Stats</StyledTitle>
+        <StyledSubTitle>An interactive airplane map</StyledSubTitle>
       </StyledHeaderSection>
       <section>
         <StyledTimeSection>
