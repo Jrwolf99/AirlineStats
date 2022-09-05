@@ -2,18 +2,26 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import useDistance from "./hooks/useDistance";
 
+import { IoIosAirplane } from "react-icons/io";
+
 const StyledBar = styled.div`
-  flex-direction: column;
   display: flex;
+  justify-content: start;
+  align-items: start;
+  margin: 3rem;
+  gap: 50px;
+`;
+
+const StyledTrack = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 3rem;
-  gap: 10px;
+  gap: 30px;
 `;
 
 const StyledWhiteBox = styled.div`
-  height: 50px;
-  padding: 2em;
+  padding: 1em;
   background-color: white;
   border-radius: 3px;
   text-align: center;
@@ -26,7 +34,7 @@ const StyledWhiteBox = styled.div`
 
 const StyledAirports = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
 
   gap: 20px;
@@ -41,6 +49,12 @@ const StyledAirport = styled.div`
 
   & > p {
     font-size: 0.7rem;
+  }
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 `;
 
@@ -70,35 +84,40 @@ export default function MyDescBar({
 
   return (
     <StyledBar>
-      <StyledWhiteBox>
-        <StyledAirports>
-          {airports.length > 0
-            ? airports.map((airport) => {
-                return (
-                  <StyledAirport>
-                    <h1>{airport.iata_code}</h1>
-                    <p>{airport.municipality}</p>
-                  </StyledAirport>
-                );
-              })
-            : "Click a blue button!"}
-        </StyledAirports>
-      </StyledWhiteBox>
+      <StyledTrack>
+        <StyledWhiteBox
+          onClick={() => {
+            setDistance(0);
+            setAirports([]);
+          }}
+          style={{ cursor: "pointer", padding: "1em" }}
+        >
+          Clear
+        </StyledWhiteBox>
+        <StyledWhiteBox>
+          <StyledAirports>
+            {airports.length > 0
+              ? airports.map((airport) => {
+                  return (
+                    <StyledAirport>
+                      <div>
+                        <IoIosAirplane />
+                        <h1> {airport.iata_code}</h1>
+                      </div>
+                      <p>{airport.municipality}</p>
+                    </StyledAirport>
+                  );
+                })
+              : "Click a blue button!"}
+          </StyledAirports>
+        </StyledWhiteBox>
+      </StyledTrack>
+
       <StyledWhiteBox>
         <StyledDistance>
-          <strong>Distance</strong>
+          <strong>Total Distance</strong>
           <p>{Math.floor(distance)} miles</p>
         </StyledDistance>
-      </StyledWhiteBox>
-
-      <StyledWhiteBox
-        onClick={() => {
-          setDistance(0);
-          setAirports([]);
-        }}
-        style={{ cursor: "pointer" }}
-      >
-        Clear
       </StyledWhiteBox>
     </StyledBar>
   );
