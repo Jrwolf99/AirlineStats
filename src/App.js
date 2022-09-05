@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import MyMap from "./MyMap";
 import MyDescBar from "./MyDescBar";
+import MyDatePicker from "./MyDatePicker";
 
 const StyledApp = styled.div`
   background-color: #2e2e2e;
@@ -17,8 +18,9 @@ const StyledHeaderSection = styled.div`
   padding: 1em 0 0 1em;
   color: white;
   display: flex;
-  flex-direction: column;
   justify-content: left;
+  align-items: center;
+  gap: 50vw;
 `;
 const StyledMapSection = styled.div`
   display: flex;
@@ -35,11 +37,16 @@ function App() {
   const [airports, setAirports] = useState([]);
   const [distance, setDistance] = useState();
 
+  const [date, setDate] = useState({ month: "July", year: "2022" });
+
   return (
     <StyledApp>
       <StyledHeaderSection>
-        <StyledTitle>Airplane Stats</StyledTitle>
-        <StyledSubTitle>An interactive airplane map</StyledSubTitle>
+        <div>
+          <StyledTitle>Airplane Stats</StyledTitle>
+          <StyledSubTitle>An interactive airplane map</StyledSubTitle>
+        </div>
+        <MyDatePicker date={date} setDate={setDate} />
       </StyledHeaderSection>
       <section>
         <StyledTimeSection>
@@ -48,6 +55,7 @@ function App() {
             setAirports={setAirports}
             distance={distance}
             setDistance={setDistance}
+            date={date}
           />
         </StyledTimeSection>
         <StyledMapSection>

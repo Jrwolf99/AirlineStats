@@ -87,6 +87,7 @@ export default function MyDescBar({
   setAirports,
   distance,
   setDistance,
+  date,
 }) {
   const { findTotalDistance } = useDistance();
   const { getFuelCost } = useFuelCost();
@@ -134,7 +135,10 @@ export default function MyDescBar({
             <p style={{ fontSize: "1.5rem" }}>
               <StyledBlueLetters>
                 $
-                {calculateTotalFuelCosts(distance, getFuelCost("July", "2012"))}
+                {calculateTotalFuelCosts(
+                  distance,
+                  getFuelCost(date.month, date.year)
+                )}
               </StyledBlueLetters>{" "}
             </p>
           </StyledCosts>
@@ -142,10 +146,12 @@ export default function MyDescBar({
 
         <StyledWhiteBox>
           <StyledCosts>
-            <strong>July 2022 Cost</strong>
+            <strong>
+              {date.month} {date.year} Cost
+            </strong>
             <p>
               <StyledBlueLetters>
-                ${getFuelCost("July", "2012")}
+                ${getFuelCost(date.month, date.year)}
               </StyledBlueLetters>{" "}
               Per Gallon
             </p>
