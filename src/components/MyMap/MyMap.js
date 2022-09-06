@@ -2,11 +2,12 @@ import React from "react";
 import USAMap from "react-usa-map";
 import styled from "styled-components";
 
-import Dot from "../../components/dot";
+import Dot from "./dot";
 
 import myAirports from "../../data/USAirports.json";
 
 import useProjection from "../../hooks/useProjection";
+import Plane from "./Plane/plane";
 
 const StyledMap = styled.div`
   position: relative;
@@ -16,11 +17,7 @@ const StyledMap = styled.div`
 
 //latitude and longitude of the US starts at 125
 export default function MyMap({ airports, setAirports }) {
-  const { albersCalculateXY } = useProjection();
-
-  const scale = 1250;
-  const shiftX = 494;
-  const shiftY = 291;
+  const { albersCalculateXY, scaleXY } = useProjection();
 
   return (
     <StyledMap>
@@ -29,8 +26,8 @@ export default function MyMap({ airports, setAirports }) {
           airport.longitude_deg,
           airport.latitude_deg
         );
-        myX = myX * scale + shiftX;
-        myY = myY * scale + shiftY;
+        myX = scaleXY(myX, myY)[0];
+        myY = scaleXY(myX, myY)[1];
 
         if (airport.iso_region === "US-HI")
           return (
@@ -84,6 +81,8 @@ export default function MyMap({ airports, setAirports }) {
           />
         );
       })}
+
+      <Plane airports={airports} />
       <USAMap />
     </StyledMap>
   );

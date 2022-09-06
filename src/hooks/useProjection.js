@@ -23,7 +23,18 @@ const useProjection = () => {
     return [x, y];
   };
 
-  return { albersCalculateXY };
+  const scaleXY = (myX, myY) => {
+    const scale = 1250;
+    const shiftX = 494;
+    const shiftY = 291;
+
+    myX = myX * scale + shiftX;
+    myY = myY * scale + shiftY;
+
+    return [myX, myY];
+  };
+
+  return { albersCalculateXY, scaleXY };
 };
 
 export default useProjection;
