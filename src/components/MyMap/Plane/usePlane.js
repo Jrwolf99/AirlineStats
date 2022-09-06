@@ -18,26 +18,43 @@ const usePlane = () => {
     return [x, y];
   };
 
+  const FindUnitVector = (point1, point2) => {
+    let vector = [point2[0] - point1[0], point2[1] - point1[1]];
+
+    let magnitude = Math.sqrt(Math.pow(vector[0], 2) + Math.pow(vector[1], 2));
+    let unitVector = [vector[0] / magnitude, vector[1] / magnitude];
+
+    return unitVector;
+  };
+
   const findAngle = (airports) => {
     let resultAngle = 0;
     let [currX, currY] = findAirportCoords(airports, airports.length - 2);
     let [nextX, nextY] = findAirportCoords(airports, airports.length - 1);
-    let planeVector = [nextX - currX, nextY - currY];
-    let planeVectorMagnitude = Math.sqrt(
-      Math.pow(planeVector[0], 2) + Math.pow(planeVector[1], 2)
-    );
-    let planeUnitVector = [
-      planeVector[0] / planeVectorMagnitude,
-      planeVector[1] / planeVectorMagnitude,
-    ];
-
-    console.log();
+    let planeUnitVector = FindUnitVector([currX, currY], [nextX, nextY]);
     resultAngle = Math.atan2(planeUnitVector[1], planeUnitVector[0]);
     resultAngle = (180 * resultAngle) / Math.PI;
     return resultAngle;
   };
 
-  return { findAngle, findAirportCoords };
+  const makeParticleCoordsArray = (airports) => {
+    let resultArray = [[]];
+    let [currX, currY] = findAirportCoords(airports, airports.length - 2);
+    let [nextX, nextY] = findAirportCoords(airports, airports.length - 1);
+    let vector = [nextX - currX, nextY - currY];
+
+    //where i is percentage along the vector
+    for (let i = 0; i < 100; i++) {
+      let percentage = i / 100;
+      resultArray.push([
+        currX + vector[0] * percentage,
+        currY + vector[1] * percentage,
+      ]);
+    }
+    return resultArray;
+  };
+
+  return { findAngle, findAirportCoords, makeParticleCoordsArray };
 };
 
 export default usePlane;

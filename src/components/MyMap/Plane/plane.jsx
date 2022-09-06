@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { IoAirplane } from "react-icons/io5"
 import useProjection from '../../../hooks/useProjection';
 import usePlane from './usePlane';
+import Particle from './particle';
 
 
 const StyledPlane = styled.div`
@@ -21,11 +22,9 @@ transition:  all .2s;
 `;
 
 
-export default function Plane({ airports }) {
+export default function Plane({ airports, x, y }) {
 
-    const { findAirportCoords, findAngle } = usePlane();
-    let [x, y] = findAirportCoords(airports, airports.length - 1);
-
+    const { findAngle } = usePlane();
     let angle = 0;
     if (airports.length > 1) {
         angle = findAngle(airports);
@@ -43,6 +42,8 @@ export default function Plane({ airports }) {
             <StyledIcon angle={`${-angle}deg`}>
                 <IoAirplane style={{ fill: "url(#blue-gradient", stroke: "white", strokeWidth: "20" }} />
             </StyledIcon>
+
+
         </ StyledPlane>
 
 
