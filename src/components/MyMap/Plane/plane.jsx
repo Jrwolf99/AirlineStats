@@ -14,12 +14,24 @@ position: absolute;
 left: ${props => props.x}px;
 bottom: ${props => props.y}px;
 transition:  all 1s ease-in-out;
+scale: 1.6;
 `;
 
 const StyledIcon = styled.div`
 transform: rotate(${props => props.angle});
 transition:  all .2s;
 `;
+
+
+const StyledParticles = styled.div`
+
+transform: translate(-20px, -20px);
+
+
+`;
+
+
+
 
 
 export default function Plane({ airports, x, y }) {
@@ -41,7 +53,37 @@ export default function Plane({ airports, x, y }) {
             </svg>
             <StyledIcon angle={`${-angle}deg`}>
                 <IoAirplane style={{ fill: "url(#blue-gradient", stroke: "white", strokeWidth: "20" }} />
+
+                <StyledParticles>
+                    <Particle color={"#304DB3"} size={10} />
+                    <Particle color={"#FAAE19"} size={7} />
+                    <Particle color={"#E41B22"} size={6} />
+                    <Particle color={"#304DB3"} size={8} />
+                    <Particle color={"#FAAE19"} size={9} />
+                    <Particle color={"#E41B22"} size={10} />
+                    <Particle color={"#304DB3"} size={9} />
+                    <Particle color={"#FAAE19"} size={8} />
+                    <Particle color={"#E41B22"} size={7} />
+                    <Particle color={"#304DB3"} size={6} />
+                    <Particle color={"#FAAE19"} size={5} />
+                    <Particle color={"#E41B22"} size={6} />
+                    <Particle color={"#304DB3"} size={8} />
+                    <Particle color={"#FAAE19"} size={9} />
+                    <Particle color={"#E41B22"} size={10} />
+                    <Particle color={"#304DB3"} size={9} />
+                    <Particle color={"#FAAE19"} size={8} />
+                    <Particle color={"#E41B22"} size={7} />
+                    <Particle color={"#304DB3"} size={6} />
+                    <Particle color={"#E41B22"} size={5} />
+                    <Particle color={"#304DB3"} size={7} />
+                    <Particle color={"#FAAE19"} size={8} />
+                    <Particle color={"#E41B22"} size={9} />
+                </StyledParticles>
+
             </StyledIcon>
+
+
+
 
 
         </ StyledPlane>

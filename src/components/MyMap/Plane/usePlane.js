@@ -37,24 +37,7 @@ const usePlane = () => {
     return resultAngle;
   };
 
-  const makeParticleCoordsArray = (airports) => {
-    let resultArray = [[]];
-    let [currX, currY] = findAirportCoords(airports, airports.length - 2);
-    let [nextX, nextY] = findAirportCoords(airports, airports.length - 1);
-    let vector = [nextX - currX, nextY - currY];
-
-    //where i is percentage along the vector
-    for (let i = 0; i < 100; i++) {
-      let percentage = i / 100;
-      resultArray.push([
-        currX + vector[0] * percentage,
-        currY + vector[1] * percentage,
-      ]);
-    }
-    return resultArray;
-  };
-
-  return { findAngle, findAirportCoords, makeParticleCoordsArray };
+  return { findAngle, findAirportCoords };
 };
 
 export default usePlane;

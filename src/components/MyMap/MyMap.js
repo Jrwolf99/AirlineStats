@@ -8,20 +8,11 @@ import myAirports from "../../data/USAirports.json";
 
 import useProjection from "../../hooks/useProjection";
 import Plane from "./Plane/plane";
-import Particle from "./Plane/particle";
 import usePlane from "./Plane/usePlane";
-import Delayed from "./Plane/delayed";
-
 const StyledMap = styled.div`
   position: relative;
   width: 1000px;
   margin: 0;
-`;
-
-const StyledParticles = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
 `;
 
 //latitude and longitude of the US starts at 125
