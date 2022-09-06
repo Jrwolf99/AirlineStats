@@ -1,5 +1,5 @@
 # Airplane Stats
-This is a program designed to display airline and flight data in a visual way. 
+This is a program designed to display airline and flight data in a visual way. check it out here: https://airplanestats.netlify.app
 
 
 # The Info
