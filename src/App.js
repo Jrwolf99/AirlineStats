@@ -14,6 +14,12 @@ const StyledApp = styled.div`
     justify-content: center;
     align-items: start;
   }
+
+  & > * {
+    @media (max-width: 1300px) {
+      transform: scale(0.8);
+    }
+  }
 `;
 const StyledHeaderSection = styled.div`
   padding: 1em 0 0 1em;
