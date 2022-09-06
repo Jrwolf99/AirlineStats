@@ -123,7 +123,7 @@ export default function MyDescBar({
                     </StyledAirport>
                   );
                 })
-              : "Click a blue button!"}
+              : "Click on an airport!"}
           </StyledAirports>
         </StyledWhiteBox>
       </StyledTrackOne>

@@ -6,6 +6,7 @@ import Modal from "./Modal";
 
 const StyledIcon = styled.button`
   font-size: 2rem;
+  width: 2rem;
 `;
 
 export default function MyGraphModal() {
