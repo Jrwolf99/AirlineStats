@@ -11,11 +11,10 @@ const StyledModal = styled.div`
   top: 0;
   left: 0;
   background-color: rgba(70, 70, 70, 0.7);
-  z-index: 100;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 `;
 
 const StyledWhiteBox = styled.div`

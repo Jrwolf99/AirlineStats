@@ -13,6 +13,13 @@ const StyledMap = styled.div`
   position: relative;
   width: 1000px;
   margin: 0;
+  z-index: 0;
+  @media (max-width: 1300px) {
+    transform: scale(0.8) translate(-100px);
+  }
+  @media (max-width: 1000px) {
+    transform: scale(0.6) translateX(-300px);
+  }
 `;
 
 //latitude and longitude of the US starts at 125

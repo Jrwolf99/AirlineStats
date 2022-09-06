@@ -12,7 +12,6 @@ const StyledBar = styled.div`
   display: flex;
   justify-content: start;
   align-items: start;
-  margin: 1.2rem;
   gap: 20px;
 `;
 

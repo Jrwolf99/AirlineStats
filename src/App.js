@@ -11,17 +11,20 @@ const StyledApp = styled.div`
 
   & > section {
     display: flex;
-    justify-content: center;
-    align-items: start;
+    margin: 1em;
+
+    @media (min-width: 1300px) {
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 const StyledHeaderSection = styled.div`
   padding: 1em 0 0 1em;
   color: white;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
-  gap: 48vw;
 
   & > span {
     display: flex;
@@ -30,11 +33,8 @@ const StyledHeaderSection = styled.div`
     gap: 40px;
   }
 `;
-const StyledMapSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+const StyledMapSection = styled.div``;
+
 const StyledTimeSection = styled.div``;
 const StyledTitle = styled.h1``;
 const StyledSubTitle = styled.h2`
