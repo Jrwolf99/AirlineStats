@@ -12,16 +12,13 @@ border-radius: 50%;
 position: absolute;
 left: ${props => props.x}px;
 bottom: ${props => props.y}px;
-transition:  all 1s ease-out;
+transition:  all 1s ease-in-out;
 `;
 
 const StyledIcon = styled.div`
 transform: rotate(${props => props.angle});
 transition:  all .2s;
 `;
-
-
-
 
 
 export default function Plane({ airports }) {
@@ -32,11 +29,7 @@ export default function Plane({ airports }) {
     let angle = 0;
     if (airports.length > 1) {
         angle = findAngle(airports);
-        console.log("ANGLE: ", angle)
     }
-
-
-
 
     return (
         <StyledPlane x={x} y={y} >
